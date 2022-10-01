@@ -1,0 +1,41 @@
+<h1>Add New Course</h1>
+<link rel="stylesheet" href="ans.css">
+<form name="myForm">
+    <div class="subjectID">
+        ID: <input type="text" ng-model="subject.id" name="id" ng-pattern="/^C+[0-9]{2}$/" required/>
+        <div ng-show="myForm.id.$dirty">
+        <span ng-show="myForm.id.$error.required" class="error">ID is required</span>
+        </div>
+        <div ng-show="myForm.id.$dirty">
+            <span ng-show="myForm.id.$invalid" class="error">ID has format: Cxx [x: digit]</span>
+        </div>
+    </div>
+    <div class="subjectname">
+        Name: <input type="text" ng-model="subject.name" name="name" required/>
+        <div ng-show="myForm.name.$dirty">
+        <span ng-show="myForm.name.$error.required" class="error">Name is required</span>
+        </div>
+    </div>
+    <div class="subjecttype">
+        Type: <input type="radio" ng-model="subject.type" name="type" ng-value="'Long-term'" checked> Long-term
+        <input type="radio" ng-model="subject.type" name="type" ng-value="'Short-term'"> Short-term
+    </div>
+    <div class="subjectfee">
+        Fee: <input type="number" ng-model="subject.fee" name="fee" min="100" required/>
+        <div ng-show="myForm.fee.$dirty">
+        <span ng-show="myForm.fee.$error.required" class="error">Fee is required</span>
+        </div>
+        <div ng-show="myForm.fee.$dirty">
+            <span ng-show="myForm.fee.$invalid" class="error">Invalid fee [must be >= 100]</span>
+        </div>
+    </div>
+    <div>
+        <a href="#!a"><input type="submit" value="Add" ng-click="add()"
+            ng-disabled="myForm.id.$invalid ||
+            myForm.name.$invalid"></a>
+    </div>
+</form>
+
+<footer>
+    <b id="footer">&copy;Copyright FPT Aptech</b>
+</footer>

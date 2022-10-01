@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="list.css">
+</head>
+<body ng-app="myApp">
+    <nav>
+        <ul>
+            <li><a href="#/!">Home</a></li>
+            <li><a href="#!a">Course List</a></li>
+            <li><a href="#!b">Add New Course</a></li>
+            <li><a href="#!d">About</a></li>
+        </ul>
+    </nav>
+
+    <div ng-view ng-controller="myController"></div>
+
+    <script>
+        var app = angular.module("myApp", ["ngRoute"])
+        app.config(function($routeProvider){
+            $routeProvider
+            .when("/", {templateUrl:"home.html"})
+            .when("/a", {templateUrl: "cslist.html"})
+            .when("/b", {templateUrl:"anc.html"})
+        })
+        app.controller("myController", function($scope,$http){
+            $http.get("subject.json").then(function(response){
+                $scope.myData = response.data.subjects;
+                $scope.subject={};
+            })
+
+            $scope.add = function(){
+                var no = $scope.subject.no;
+                var id = $scope.subject.id;
+                var name = $scope.subject.name;
+                var type = $scope.subject.type;
+                var fee = $scope.subject.fee;
+                var no1 = $scope.myData.length;
+                no1++
+                alert("add new subject successfully")
+                $scope.myData.push({
+                    no : no1,
+                    id : id,
+                    name : name,
+                    type : $scope.subject.type,
+                    fee : fee,
+                })
+                $scope.subject={};
+            }
+            $scope.delete = function(no){
+                for(i in $scope.myData){
+                    if($scope.myData[i].no == no){
+                        $scope.myData.splice(i,1);
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>
