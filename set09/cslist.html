@@ -1,39 +1,36 @@
-<h1>Course List</h1>
+<h1>Product List</h1>
 <hr>
-<label for="">Enter Course Name: </label>
-<input type="text">
+<label for="">Enter Product Name: </label>
+<input type="text" ng-model="searchtxt">
 <div></div>
-<input type="radio" name="chooseN" id="radioterm">Long-term
-<input type="radio" name="chooseN" id="radioterm2">Short-term
-<input type="radio" name="chooseN" id="radioterm3" checked>All
+<div></div>
+<input type="radio" name="chooseN" id="radioterm">In-stock 
+<input type="radio" name="chooseN" id="radioterm2">Out-stock 
+<input type="radio" name="chooseN" id="radioterm3" checked>All 
 
 <div class="container">
-    <table class="table table-hover">
+    <table class="table table-hover table-striped table-bordered">
         <thead>
             <tr>
                 <th>No</th>
                 <th>ID</th>
                 <th>Name</th>
-                <th>Type</th>
-                <th>Fee</th>
-                <th>Action</th>
+                <th>Price</th>
+                <th>Stock</th>
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="x in myData">
+            <tr ng-repeat="x in myData | filter: searchtxt">
                 <td>{{x.no}}</td>
                 <td>{{x.id}}</td>
                 <td>{{x.name}}</td>
-                <td>{{x.type}}</td>
-                <td>{{x.fee}}</td>
-                <td>
-                    <a href="#!a" ng-click="delete(x.no)">Delete</a>
-                </td>
+                <td>{{x.price}}</td>
+                <td>{{x.stock}}</td>
             </tr>
         </tbody>
     </table>
 </div>
-
+<hr>
 <footer>
     <b id="footer">&copy;Copyright FPT Aptech</b>
 </footer>

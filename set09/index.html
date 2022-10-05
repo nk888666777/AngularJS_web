@@ -17,12 +17,12 @@
     <nav>
         <ul>
             <li><a href="#/!">Home</a></li>
-            <li><a href="#!a">Course List</a></li>
-            <li><a href="#!b">Add New Course</a></li>
-            <li><a href="#!d">About</a></li>
+            <li><a href="#!a">Product List</a></li>
+            <li><a href="#!b">Add New Product</a></li>
+            <li><a href="#!d">About us</a></li>
         </ul>
     </nav>
-
+    <hr>
     <div ng-view ng-controller="myController"></div>
 
     <script>
@@ -43,26 +43,19 @@
                 var no = $scope.subject.no;
                 var id = $scope.subject.id;
                 var name = $scope.subject.name;
-                var type = $scope.subject.type;
-                var fee = $scope.subject.fee;
+                var price = $scope.subject.price;
+                var stock = $scope.subject.stock;
                 var no1 = $scope.myData.length;
                 no1++
-                alert("add new subject successfully")
+                alert("add new product successfully")
                 $scope.myData.push({
                     no : no1,
                     id : id,
                     name : name,
-                    type : $scope.subject.type,
-                    fee : fee,
+                    price : $scope.subject.price,
+                    stock : "true",
                 })
                 $scope.subject={};
-            }
-            $scope.delete = function(no){
-                for(i in $scope.myData){
-                    if($scope.myData[i].no == no){
-                        $scope.myData.splice(i,1);
-                    }
-                }
             }
         })
     </script>

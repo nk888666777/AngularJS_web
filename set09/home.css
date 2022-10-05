@@ -5,9 +5,11 @@ ul{
     padding: 20px;
     border-bottom: solid 2px black;
     border-top: solid 2px black;
+    border-right: solid 1px black;
 }
 li{
     display: inline-block;
+    border-right: solid 1px black;
 }
 li a{
     display: block;
